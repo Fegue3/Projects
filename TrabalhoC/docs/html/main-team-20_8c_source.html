@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Team20: Código-Fonte de src/main-team-20.c</title>
+<link rel="icon" href="v1logo.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="v1logo.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">Team20<span id="projectnumber">&#160;V1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('main-team-20_8c_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">main-team-20.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="main-team-20_8c.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;math.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">   12</a></span><span class="preprocessor">#define TAMANHO_VETOR 10</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="functions-team-20_8h.html">functions-team-20.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="main-team-20_8c.html#a0ddf1224851353fc92bfbff6f499fa97">   24</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main-team-20_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">if</span> (argc &gt; 1) {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">if</span> (strcmp(argv[1], <span class="stringliteral">&quot;--help&quot;</span>) == 0 || strcmp(argv[1], <span class="stringliteral">&quot;-h&quot;</span>) == 0) {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <a class="code hl_function" href="functions-team-20_8c.html#add2bc5d6877c353d9ee4eef36033258d">mostrarAjuda</a>();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (strcmp(argv[1], <span class="stringliteral">&quot;--version&quot;</span>) == 0 || strcmp(argv[1], <span class="stringliteral">&quot;-v&quot;</span>) == 0) {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            printf(<span class="stringliteral">&quot;Versão 1.0\n&quot;</span>);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">int</span> numeros[<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>]; <span class="comment">//Primeiro Vetor</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">int</span> novo_vetor[<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>]; <span class="comment">//Função 8</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">int</span> mistura_vetor[<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>]; <span class="comment">//Função 8</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">int</span> vetor2[<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>]; <span class="comment">//Função 10</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">int</span> produtomatriz[<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>][<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>]; <span class="comment">//Função 10</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">int</span> transposta[<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>][<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>]; <span class="comment">//Função 11</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">int</span> i, validar_entrada, escolha;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">int</span> matriz[<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>][<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>];</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">int</span> voltarMenu = 1;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">//Validação de entrada</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">do</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        printf(<span class="stringliteral">&quot;Pressione 1 para entrar no programa\n&quot;</span>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;validar_entrada);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }<span class="keywordflow">while</span>(validar_entrada != 1);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>; i++) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">do</span> {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            printf(<span class="stringliteral">&quot;Digite o %d numero inteiro entre -10 e 16: &quot;</span>, i + 1);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;numeros[i]);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keywordflow">if</span> (numeros[i] &lt; -10 || numeros[i] &gt; 16) {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                printf(<span class="stringliteral">&quot;Por favor, digite um numero entre -10 e 16.\n&quot;</span>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        } <span class="keywordflow">while</span> (numeros[i] &lt; -10 || numeros[i] &gt; 16);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }<span class="keywordflow">while</span>(voltarMenu)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">do</span> {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="comment">// Exibe o menu</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        printf(<span class="stringliteral">&quot;Menu:\n&quot;</span>);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        printf(<span class="stringliteral">&quot;1-Calculo da multiplicacao de todos os elementos no vetor:\n&quot;</span>);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        printf(<span class="stringliteral">&quot;2-Identificacao do maximo de todos os elementos do vetor:\n&quot;</span>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        printf(<span class="stringliteral">&quot;3-Devolucao da soma dos valores do vetor que sao divisiveis por tres:\n&quot;</span>);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        printf(<span class="stringliteral">&quot;4-Devolucao do vetor ordenado por ordem crescente dos seus valores simetricos:\n&quot;</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        printf(<span class="stringliteral">&quot;5-Construcao de uma matriz 10 por 10, em que cada linha e composta pelo vetor lido(primeira linha) e por permutacoes dos seus valores(outras linhas):\n&quot;</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        printf(<span class="stringliteral">&quot;6-Calculo do logaritmo (base natural) de todos os elementos no vetor:\n&quot;</span>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        printf(<span class="stringliteral">&quot;7-Página de Ajuda\n&quot;</span>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        printf(<span class="stringliteral">&quot;8-Leitura de um novo vetor, e devolucao de um  vetor que  mistura  metade do primeiro vetor e metade do segundo;\n&quot;</span>);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        printf(<span class="stringliteral">&quot;9-Calculo do maximo divisor comum de cada dois numeros seguidos do vetor;\n&quot;</span>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        printf(<span class="stringliteral">&quot;10-Geracao  de  um  novo  vetor  1x10   aleatorio,  calculo  e  devolucao  da matriz 10x10 resultante do produto do vetor inicial com o novo vetor lido;\n&quot;</span>);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        printf(<span class="stringliteral">&quot;11-Calculo e apresentacao da matriz transposta referida no ponto anterior;\n&quot;</span>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="comment">// Solicita a escolha do usuário</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        printf(<span class="stringliteral">&quot;Escolha uma opcao: &quot;</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;escolha);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="comment">// Processa a escolha do usuário</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">switch</span> (escolha) {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                <a class="code hl_function" href="functions-team-20_8c.html#a6fa3bc15e47b85f8c3e44c5b03c10ee9">multiplicacaoVetor</a>(numeros, <a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">case</span> 2:</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                <a class="code hl_function" href="functions-team-20_8c.html#ae0b73efba922fde904d494a6f4c82b26">valorMaximo</a>(numeros, <a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <span class="keywordflow">case</span> 3:</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                <a class="code hl_function" href="functions-team-20_8c.html#a3a20088110fe3764837a9f6cb7762dae">somaDivisiveisPorTres</a>(numeros,<a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            <span class="keywordflow">case</span> 4:</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                <a class="code hl_function" href="functions-team-20_8c.html#adc64edf1a24c58e21051ddcc9d78c61f">ordenarcrescenteSimetricos</a>(numeros, <a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <span class="keywordflow">case</span> 5:</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                <a class="code hl_function" href="functions-team-20_8c.html#ab23b922607ce5ad1d89b14ebba1a026c">fazerpermutacaoMatriz</a>(numeros, matriz);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            <span class="keywordflow">case</span> 6:</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                <a class="code hl_function" href="functions-team-20_8c.html#a649486bf8912f6b05e6cd2ab62e786e9">calcularLogNaBaseNatural</a>(numeros, <a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            <span class="keywordflow">case</span> 7:</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                <a class="code hl_function" href="functions-team-20_8c.html#add2bc5d6877c353d9ee4eef36033258d">mostrarAjuda</a>();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            <span class="keywordflow">case</span> 8:</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                <a class="code hl_function" href="functions-team-20_8c.html#ade6edb78d9a2c495af63bf084c0a825e">misturarVetores</a>(numeros, novo_vetor, mistura_vetor);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            <span class="keywordflow">case</span> 9:</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                <a class="code hl_function" href="functions-team-20_8c.html#a9177dea5ab7bbc1b48af6d7513fd8f16">calcularMDCVetor</a>(numeros, <a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            <span class="keywordflow">case</span> 10:</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                <a class="code hl_function" href="functions-team-20_8c.html#ac59d3229e83bb9659e03ea8cb3eac9fc">criarVetorAleatorio</a>(vetor2, <a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>, -10, 16);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                <a class="code hl_function" href="functions-team-20_8c.html#a614af6a66cdc40389999709356741045">calcularMatrizProduto</a>(numeros,vetor2,produtomatriz);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <span class="keywordflow">case</span> 11:</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                <a class="code hl_function" href="functions-team-20_8c.html#a4d1d32eae0f01be181d1f87de3c67850">criarVetorAleatorio_semprint</a>(vetor2, <a class="code hl_define" href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a>, -10, 16);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                <a class="code hl_function" href="functions-team-20_8c.html#ae0359ea33795d65aaceb6d99f2f8d429">calcularMatrizProduto_semprint</a>(numeros,vetor2,produtomatriz);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                <a class="code hl_function" href="functions-team-20_8c.html#a8bc18ef07c445816a859dd699181a2db">transporMatriz</a>(produtomatriz, transposta);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                printf(<span class="stringliteral">&quot;Opcao invalida. Tente novamente.\n&quot;</span>);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        printf(<span class="stringliteral">&quot;\nDeseja voltar ao menu= (1 - Sim / 0 - Nao):\n&quot;</span>);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;voltarMenu);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    } <span class="keywordflow">while</span> (voltarMenu != 0 &amp;&amp; voltarMenu != 1);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>}</div>
+</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="ttc" id="afunctions-team-20_8c_html_a3a20088110fe3764837a9f6cb7762dae"><div class="ttname"><a href="functions-team-20_8c.html#a3a20088110fe3764837a9f6cb7762dae">somaDivisiveisPorTres</a></div><div class="ttdeci">int somaDivisiveisPorTres(int vetor[], int tamanho)</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00087">functions-team-20.c:87</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_a4d1d32eae0f01be181d1f87de3c67850"><div class="ttname"><a href="functions-team-20_8c.html#a4d1d32eae0f01be181d1f87de3c67850">criarVetorAleatorio_semprint</a></div><div class="ttdeci">void criarVetorAleatorio_semprint(int vetor[], int tamanho, int minimo, int maximo)</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00427">functions-team-20.c:427</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_a614af6a66cdc40389999709356741045"><div class="ttname"><a href="functions-team-20_8c.html#a614af6a66cdc40389999709356741045">calcularMatrizProduto</a></div><div class="ttdeci">void calcularMatrizProduto(int vetor1[], int vetor2[], int matrizResultado[][TAMANHO_VETOR])</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00395">functions-team-20.c:395</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_a649486bf8912f6b05e6cd2ab62e786e9"><div class="ttname"><a href="functions-team-20_8c.html#a649486bf8912f6b05e6cd2ab62e786e9">calcularLogNaBaseNatural</a></div><div class="ttdeci">void calcularLogNaBaseNatural(int vetor[], int tamanho)</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00239">functions-team-20.c:239</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_a6fa3bc15e47b85f8c3e44c5b03c10ee9"><div class="ttname"><a href="functions-team-20_8c.html#a6fa3bc15e47b85f8c3e44c5b03c10ee9">multiplicacaoVetor</a></div><div class="ttdeci">int multiplicacaoVetor(int vetor[], int tamanho)</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00027">functions-team-20.c:27</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_a8bc18ef07c445816a859dd699181a2db"><div class="ttname"><a href="functions-team-20_8c.html#a8bc18ef07c445816a859dd699181a2db">transporMatriz</a></div><div class="ttdeci">void transporMatriz(int matriz[][TAMANHO_VETOR], int transposta[][TAMANHO_VETOR])</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00474">functions-team-20.c:474</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_a9177dea5ab7bbc1b48af6d7513fd8f16"><div class="ttname"><a href="functions-team-20_8c.html#a9177dea5ab7bbc1b48af6d7513fd8f16">calcularMDCVetor</a></div><div class="ttdeci">void calcularMDCVetor(int vetor[], int tamanho)</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00343">functions-team-20.c:343</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_ab23b922607ce5ad1d89b14ebba1a026c"><div class="ttname"><a href="functions-team-20_8c.html#ab23b922607ce5ad1d89b14ebba1a026c">fazerpermutacaoMatriz</a></div><div class="ttdeci">void fazerpermutacaoMatriz(int vetor[], int matriz[][TAMANHO_VETOR])</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00195">functions-team-20.c:195</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_ac59d3229e83bb9659e03ea8cb3eac9fc"><div class="ttname"><a href="functions-team-20_8c.html#ac59d3229e83bb9659e03ea8cb3eac9fc">criarVetorAleatorio</a></div><div class="ttdeci">void criarVetorAleatorio(int vetor[], int tamanho, int minimo, int maximo)</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00366">functions-team-20.c:366</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_adc64edf1a24c58e21051ddcc9d78c61f"><div class="ttname"><a href="functions-team-20_8c.html#adc64edf1a24c58e21051ddcc9d78c61f">ordenarcrescenteSimetricos</a></div><div class="ttdeci">void ordenarcrescenteSimetricos(int vetor[], int tamanho)</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00114">functions-team-20.c:114</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_add2bc5d6877c353d9ee4eef36033258d"><div class="ttname"><a href="functions-team-20_8c.html#add2bc5d6877c353d9ee4eef36033258d">mostrarAjuda</a></div><div class="ttdeci">void mostrarAjuda()</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00257">functions-team-20.c:257</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_ade6edb78d9a2c495af63bf084c0a825e"><div class="ttname"><a href="functions-team-20_8c.html#ade6edb78d9a2c495af63bf084c0a825e">misturarVetores</a></div><div class="ttdeci">void misturarVetores(int vetor[], int vetor_novo[], int vetorMisturado[])</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00277">functions-team-20.c:277</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_ae0359ea33795d65aaceb6d99f2f8d429"><div class="ttname"><a href="functions-team-20_8c.html#ae0359ea33795d65aaceb6d99f2f8d429">calcularMatrizProduto_semprint</a></div><div class="ttdeci">void calcularMatrizProduto_semprint(int vetor1[], int vetor2[], int matrizResultado[][TAMANHO_VETOR])</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00452">functions-team-20.c:452</a></div></div>
+<div class="ttc" id="afunctions-team-20_8c_html_ae0b73efba922fde904d494a6f4c82b26"><div class="ttname"><a href="functions-team-20_8c.html#ae0b73efba922fde904d494a6f4c82b26">valorMaximo</a></div><div class="ttdeci">int valorMaximo(int vetor[], int tamanho)</div><div class="ttdef"><b>Definição</b> <a href="functions-team-20_8c_source.html#l00055">functions-team-20.c:55</a></div></div>
+<div class="ttc" id="afunctions-team-20_8h_html"><div class="ttname"><a href="functions-team-20_8h.html">functions-team-20.h</a></div><div class="ttdoc">Cabeçalho das funções.</div></div>
+<div class="ttc" id="amain-team-20_8c_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="main-team-20_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definição</b> <a href="#l00024">main-team-20.c:24</a></div></div>
+<div class="ttc" id="amain-team-20_8c_html_ade16fa5c488000640214b8d6cb625573"><div class="ttname"><a href="main-team-20_8c.html#ade16fa5c488000640214b8d6cb625573">TAMANHO_VETOR</a></div><div class="ttdeci">#define TAMANHO_VETOR</div><div class="ttdef"><b>Definição</b> <a href="#l00012">main-team-20.c:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main-team-20_8c.html">main-team-20.c</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>
