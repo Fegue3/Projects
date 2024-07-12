@@ -1,0 +1,6 @@
+No DNS, metemos na primeira camada o ip do servidor, na segunda metemos o ip do google 8.8.8.8
+
+ip dns server 
+ip google 8.8
+
+depois adicionamos os ips

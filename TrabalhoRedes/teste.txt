@@ -1,0 +1,416 @@
+Gigapix Lisboa
+-se 0/0  193.136.0.1  255.255.255.252
+-gig 1/0 193.136.0.5  255.255.255.252
+-gig 2/0 193.136.66.1  255.255.255.128
+
+Gigapix Porto
+-se 0/0 193.136.0.2  255.255.255.252
+-se 1/0 193.136.66.129  255.255.255.128
+-gig 2/0 193.136.66.6  255.255.255.252
+-gig 3/0 193.136.0.9  255.255.255.252
+
+ubi
+-se 0/0 193.136.66.130  255.255.255.128
+-gig 1/0 193.136.66.2  255.255.255.128
+
+
+
+vlans:
+
+10 - DSoc
+20- deletromecanica
+30- secretariareitor
+40- fcs
+50- dmatematica
+60- ubimedical
+70- residencias
+80- dge
+90- eduram
+100- di-docentes
+110- di-geral
+120- pessoal
+130- engcivil
+
+
+FE80::20A:F3FF:FEA8:7701
+
+5. Configurar as rotas OSPF entre os routers GigaPix [10]
+no gigapix lisboa:
+	-Router>en
+	-Router#conf t
+	-Router(config)#router ospf 10
+	-Router(config-router)#router-id 1.1.1.1
+	-Router(config-router)#network 193.136.0.0 0.0.0.3 area 0
+	-Router(config-router)#network 193.136.66.0 0.0.0.127 area 0
+	-Router(config-router)#network 193.136.0.4 0.0.0.3 area 0
+	-Router(config-router)#exit
+	-Router(config)#exit
+	-Router#copy running-config startup-config
+
+no gigapix porto:
+	-Router>en
+	-Router#conf t
+	-Router(config)#router ospf 10
+	-Router(config-router)#router-id 2.2.2.2
+	-Router(config-router)#network 193.136.0.0 0.0.0.3 area 0
+	-Router(config-router)#network 193.136.0.4 0.0.0.3 area 0
+	-Router(config-router)#network 193.136.0.8 0.0.0.3 area 0
+	-Router(config-router)#network 193.136.66.128 0.0.0.127 area 0
+	-Router(config-router)#exit
+	-Router(config)#exit
+	-Router#copy running-config startup-config
+
+no router ubi:
+	-Router>en
+	-Router#conf t
+	-Router(config)#router ospf 10
+	-Router(config-router)#router-id 3.3.3.3
+	-Router(config-router)#network 193.136.66.0 0.0.0.127 area 0
+	-Router(config-router)#network 193.136.66.128 0.0.0.127 area 0
+	-Router(config-router)#exit
+	-Router(config)#exit
+	-Router#copy running-config startup-config
+
+
+6. Configurar os circuitos Frame-Relay na Internet Cloud [15]. 
+
+em todos os router conectados a serial a internet:
+	Router(config-if)#no ip split-horizon
+
+no router gigapix porto:
+	(no serial)
+	Router(config-if)#no encapsulation frame-relay
+	Router(config-if)#encapsulation frame-relay
+	Router(config-if)#int s0/0.301 point-to-point
+	Router(config-subif)#ip address 8.8.2.2 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 20
+	Router(config-subif)#int s0/0.302 point-to-point
+	Router(config-subif)#ip address 193.136.2.1 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 200
+	Router(config-subif)#exit
+	Router(config-if)#exit
+	Router(config)#exit
+	Router#copy running-config startup-config	
+
+no router gigapix lisboa:
+	(no serial)
+	Router(config-if)#no encapsulation frame-relay
+	Router(config-if)#encapsulation frame-relay
+	Router(config-if)#int s0/0.201 point-to-point
+	Router(config-subif)#ip address 8.8.1.2 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 300
+	Router(config-subif)#int s0/0.203 point-to-point
+	Router(config-subif)#ip address 193.136.2.2 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 30
+	Router(config-subif)#exit
+	Router(config-if)#exit
+	Router(config)#exit
+	Router#copy running-config startup-config
+
+no router google:
+	(no serial)
+	Router(config-if)#no encapsulation frame-relay
+	Router(config-if)#encapsulation frame-relay
+	Router(config-if)#int s3/0.102 point-to-point
+	Router(config-subif)#ip address 8.8.1.1 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 100
+	Router(config-if)#int s3/0.103 point-to-point
+	Router(config-subif)#ip address 8.8.2.1 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 1000
+	Router(config-subif)#exit
+	Router(config-if)#exit
+	Router(config)#exit
+	Router#copy running-config startup-config
+
+
+
+7. Configurar as VLANs nos vários switches [15]. 
+no switch CI:
+	-Switch>en
+	-Switch#conf t
+	-Switch(config)#hostname CI
+	-CI(config)#vlan 10 
+	-CI(config-vlan)#name DSoc
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 20
+	-CI(config-vlan)#name deletromecanica
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 30
+	-CI(config-vlan)#name secretariareitor
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 40
+	-CI(config-vlan)#name fcs
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 50
+	-CI(config-vlan)#name dmatematica
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 60
+	-CI(config-vlan)#name ubimedical
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 70
+	-CI(config-vlan)#name residencias
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 80
+	-CI(config-vlan)#name dge
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 90
+	-CI(config-vlan)#name eduram
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 100
+	-CI(config-vlan)#name di-docentes
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 110
+	-CI(config-vlan)#name di-geral
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 120
+	-CI(config-vlan)#name pessoal
+	-CI(config-vlan)#exit
+	-CI(config)#vlan 130
+	-CI(config-vlan)#name engcivil
+	-CI(config-vlan)#exit
+	-CI(config)#interface GigabitEthernet1/1
+	-CI(config-if)#switchport mode trunk 
+	-CI(config-if)#switchport trunk allowed vlan 20,50,90,100,110,130
+	-CI(config-if)#exit
+	-CI(config)#interface GigabitEthernet 2/1
+	-CI(config-if)#switchport mode trunk
+	-CI(config-if)#switchport trunk allowed vlan 30,90,120
+	-CI(config-if)#exit
+	-CI(config)#interface GigabitEthernet 3/1
+	-CI(config-if)#switchport mode trunk 
+	-CI(config-if)#switchport trunk allowed vlan 40,60,90
+	-CI(config-if)#exit
+	-CI(config)#interface FastEthernet 4/1
+	-CI(config-if)#switchport mode trunk
+	-CI(config-if)#switchport mode trunk allowed vlan 10,70,80,90
+	-CI(config-if)#exit
+no switch polo 1-2:
+	-Switch>en
+	-Switch#conf t
+	-Switch(config)#hostname polo1-2
+	-polo1-2(config)#vlan 10
+	-polo1-2(config)#name DSoc
+	-polo1-2(config-if)#exit
+	-polo1-2(config)#vlan 70
+	-polo1-2(config-vlan)#name residencias
+	-polo1-2(config-vlan)#exit
+	-polo1-2(config)#vlan 80
+	-polo1-2(config-vlan)#name dge
+	-polo1-2(config-vlan)#exit
+	-polo1-2(config)#vlan 90
+	-polo1-2(config-vlan)#name eduram
+	-polo1-2(config-vlan)#exit
+	-polo1-2(config)#interface GigabitEthernet1/1
+	-polo1-2(config-if)#switchport mode trunk
+	-polo1-2(config-if)#switchport trunk allowed vlan 70,90
+	-polo1-2(config-if)#exit
+	-polo1-2(config)#interface GigabitEthernet2/1
+	-polo1-2(config-if)#switchport mode trunk
+	-polo1-2(config-if)#switchport trunk allowed vlan 10,80,90
+	-polo1-2(config-if)#exit
+	-polo1-2(config)#interface FastEthernet4/1
+	-polo1-2(config-if)#switchport mode trunk
+	-polo1-2(config-if)#switchport trunk allowed vlan 10,70,80,90
+	-polo1-2(config-if)#exit
+no switch residências:
+	-Switch>en
+	-Switch#conf t
+	-Switch(config)#hostname residencias
+	-residencias(config)#vlan 70
+	-residencias(config-vlan)#name residencias
+	-residencias(config-vlan)#exit
+	-residencias(config)#vlan 90
+	-residencias(config-vlan)#name eduram
+	-residencias(config-vlan)#exit
+	-residencias(config)#interface FastEthernet1/1
+	-residencias(config-if)#switchport mode access
+	-residencias(config-if)#switchport access vlan 70
+	-residencias(config)#interface GigabitEthernet0/1
+	-residencias(config-if)#switchport mode trunk
+	-residencias(config-if)#switchport trunk allowed vlan 70,90
+no switch polo4:
+	-Switch>en
+	-Switch#conf t
+	-Switch(config)#hostname polo4
+	-polo4(config)#vlan 10
+	-polo4(config)#name DSoc
+	-polo4(config)#exit
+	-polo4(config)#vlan 80
+	-polo4(config-vlan)#name dge
+	-polo4(config-vlan)#exit
+	-polo4(config)#vlan 90
+	-polo4(config-vlan)#name eduram
+	-polo4(config-vlan)#exit
+	-polo4(config)#interface FastEthernet3/1
+	-polo4(config-if)#switchport mode access
+	-polo4(config-if)#switchport access vlan 10
+	-polo4(config-if)#exit
+	-polo4(config)#interface FastEthernet2/1
+	-polo4(config-if)#switchport mode access
+	-polo4(config-if)#switchport access vlan 80
+	-polo4(config-if)#exit
+	-polo4(config)#interface GigabitEthernet0/1
+	-polo4(config-if)#switchport mode trunk
+	-polo4(config-if)#switchport trunk allowed vlan 10,80,90
+
+no switch polo1-1:
+	-Switch>en
+	-Switch#conf t
+	-Switch(config)#hostname polo1-1
+	-polo1-1(config)#vlan 20
+	-polo1-1(config-vlan)#name deletromecanica
+	-polo1-1(config-vlan)#exit
+	-polo1-1(config)#vlan 50
+	-polo1-1(config-vlan)#name dmatematica
+	-polo1-1(config-vlan)#exit
+	-polo1-1(config)#vlan 90
+	-polo1-1(config-vlan)#name eduram
+	-polo1-1(config-vlan)#exit
+	-polo1-1(config)#vlan 100
+	-polo1-1(config-vlan)#name di-docentes
+	-polo1-1(config-vlan)#exit
+	-polo1-1(config)#vlan 110
+	-polo1-1(config-vlan)#name di-geral
+	-polo1-1(config-vlan)#exit
+	-polo1-1(config)#vlan 130
+	-polo1-1(config-vlan)#name engcivil
+	-polo1-1(config-vlan)#exit
+	-polo1-1(config)#interface FastEthernet1/1
+	-polo1-1(config-if)#switchport mode access
+	-polo1-1(config-if)#switchport access vlan 20
+	-polo1-1(config-if)#exit
+	-polo1-1(config)#interface FastEthernet2/1
+	-polo1-1(config-if)#switchport mode access
+	-polo1-1(config-if)#switchport access vlan 130
+	-polo1-1(config-if)#exit
+	-polo1-1(config)#interface FastEthernet 3/1
+	-polo1-1(config-if)#switchport mode access
+	-polo1-1(config-if)#switchport access vlan 50
+	-polo1-1(config)#interface GigabitEthernet0/1
+	-polo1-1(config-if)#switchport mode trunk
+	-polo1-1(config-if)#switchport trunk allowed vlan 20,50,90,110,100,130
+	-polo1-1(config-if)#exit
+	-polo1-1(config)#interface GigabitEthernet4/1
+	-polo1-1(config-if)#switchport mode trunk
+	-polo1-1(config)#switchport trunk allowed 90,100,110
+
+
+no switch di:
+	-Switch>en
+	-Switch#conf t
+	-Switch(config)#hostname di
+	-di(config)#vlan 90
+	-di(config-vlan)#name eduram
+	-di(config-vlan)#exit
+	-di(config)#vlan 100
+	-di(config-vlan)#name di-docentes
+	-di(config-vlan)#exit
+	-di(config)#vlan 110
+	-di(config-vlan)#name di-geral
+	-di(config-vlan)#exit
+	-di(config)#interface GigabitEthernet2/1
+	-di(config-if)#switchport mode trunk
+	-di(config-if)#switchport trunk allowed vlan 90,100,110
+	-di(config-if)#exit
+	-di(config)#interface FastEthernet0/1
+	-di(config-if)#switchport mode access
+	-di(config-if)#switchport access vlan 100
+	-di(config-if)#exit
+	-di(config)#interface FastEthernet1/1
+	-di(config-if)#switchport mode access
+	-di(config-if)#switchport access vlan 110
+	-di(config-if)#exit
+
+
+no switch polo2:
+	-Switch>en
+	-Switch#conf t
+	-Switch(config)#hostname polo2
+	-polo2(config)#vlan 30
+	-polo2(config-vlan)#name secretariareitor
+	-polo2(config-vlan)#exit
+	-polo2(config)#vlan 120
+	-polo2(config-vlan)#name pessoal
+	-polo2(config-vlan)#exit
+	-polo2(config)#vlan 90
+	-polo2(config-vlan)#name eduram
+	-polo2(config-vlan)#exit
+	-polo2(config)#interface FastEthernet1/1
+	-polo2(config-if)#switchport mode access
+	-polo2(config-if)#switchport access vlan 30
+	-polo2(config-if)#exit
+	-polo2(config)#interface FastEthernet2/1
+	-polo2(config-if)#switchport mode access 
+	-polo2(config-if)#switchport access vlan 120
+	-polo2(config-if)#exit
+	-polo2(config)#interface GigabitEthernet3/1
+	-polo2(config-if)#switchport mode trunk
+	-polo2(config-if)#switchport trunk allowed vlan 30,90,120
+no switch polo3:
+	-Switch>en
+	-Switch#conf t
+	-Switch(config)#hostname polo3
+	-polo3(config)#vlan 40
+	-polo3(config-vlan)#name fcs
+	-polo3(config-vlan)#exit
+	-polo3(config)#vlan 60
+	-polo3(config-vlan)#name ubimedical
+	-polo3(config-vlan)#exit
+	-polo3(config)#vlan 90
+	-polo3(config-vlan)#name eduram
+	-polo3(config-vlan)#exit
+	-polo3(config)#interface FastEthernet 2/1
+	-polo3(config-if)#switchport mode access
+	-polo3(config-if)#switchport access vlan 40
+	-polo3(config-if)#exit
+	-polo3(config)#interface FastEthernet3/1
+	-polo3(config-if)#switchport mode access
+	-polo3(config-if)#switchport access vlan 60
+	-polo3(config-if)#exit
+	-polo3(config)#interface GigabitEthernet0/1
+	-polo3(config-if)#switchport mode trunk
+	-polo3(config-if)#switchport trunk allowed vlan 40,60,90
+
+
+
+16. Configurar a partilha de rotas entre RIP e OSPF [15]. 
+
+no router gigapix porto:
+
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 193.136.0.0
+Router(config-router)#network 193.136.66.0
+Router(config-router)#no auto-summary
+Router(config-router)#redistribute ospf 10
+
+no router ubi:
+
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 193.136.66.0
+Router(config-router)#no auto-summary
+Router(config-router)#redistribute ospf 10
+Router(config-router)#exit
+Router(config)#ip route 193.136.0.8 255.255.255.252 193.136.66.129
+Router(config)#exit
+Router#copy running-config startup-config
+
+
+no router ISPX:
+
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 193.136.0.0
+Router(config-router)#network 194.65.0.0
+Router(config-router)#no auto-summary
+Router(config-router)#redistribute ospf 10
+Router(config-router)#exit
+Router(config)#exit
+Router#copy running-config startup-config

@@ -1,0 +1,3 @@
+banner motd #
+* Aviso: Acesso permitido apenas a usuários autorizados *
+#

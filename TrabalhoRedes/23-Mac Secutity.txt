@@ -1,0 +1,13 @@
+Switch> enable
+Switch# configure terminal
+Switch(config)# interface fa0/1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport port-security
+Switch(config-if)# switchport port-security maximum 1
+Switch(config-if)# switchport port-security mac-address 00D0.FFD9.60C5
+Switch(config-if)# switchport port-security violation restrict
+Switch(config-if)# exit
+Switch(config)# exit
+
+verificao:
+Switch# show port-security interface fa0/1

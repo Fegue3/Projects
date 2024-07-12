@@ -1,0 +1,57 @@
+6. Configurar os circuitos Frame-Relay na Internet Cloud [15]. 
+
+em todos os router conectados a serial a internet:
+	Router(config-if)#no ip split-horizon
+
+no router gigapix porto:
+	(no serial)
+	Router(config-if)#no encapsulation frame-relay
+	Router(config-if)#encapsulation frame-relay
+	Router(config-if)#int s0/0.301 point-to-point
+	Router(config-subif)#ip address 8.8.2.2 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 20
+	Router(config-subif)#int s0/0.302 point-to-point
+	Router(config-subif)#ip address 193.136.2.1 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 200
+	Router(config-subif)#exit
+	Router(config-if)#exit
+	Router(config)#exit
+	Router#copy running-config startup-config	
+
+no router gigapix lisboa:
+	(no serial)
+	Router(config-if)#no encapsulation frame-relay
+	Router(config-if)#encapsulation frame-relay
+	Router(config-if)#int s0/0.201 point-to-point
+	Router(config-subif)#ip address 8.8.1.2 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 300
+	Router(config-subif)#int s0/0.203 point-to-point
+	Router(config-subif)#ip address 193.136.2.2 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 30
+	Router(config-subif)#exit
+	Router(config-if)#exit
+	Router(config)#exit
+	Router#copy running-config startup-config
+
+no router google:
+	(no serial)
+	Router(config-if)#no encapsulation frame-relay
+	Router(config-if)#encapsulation frame-relay
+	Router(config-if)#int s3/0.102 point-to-point
+	Router(config-subif)#ip address 8.8.1.1 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 100
+	Router(config-if)#int s3/0.103 point-to-point
+	Router(config-subif)#ip address 8.8.2.1 255.255.255.0
+	Router(config-subif)#bandwidth 64
+	Router(config-subif)#frame-relay interface-dlci 1000
+	Router(config-subif)#exit
+	Router(config-if)#exit
+	Router(config)#exit
+	Router#copy running-config startup-config
+
+

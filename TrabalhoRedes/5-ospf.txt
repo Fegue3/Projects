@@ -1,0 +1,37 @@
+5. Configurar as rotas OSPF entre os routers GigaPix [10]
+no gigapix lisboa:
+	-Router>en
+	-Router#conf t
+	-Router(config)#router ospf 10
+	-Router(config-router)#router-id 1.1.1.1
+	-Router(config-router)#network 193.136.0.0 0.0.0.3 area 0
+	-Router(config-router)#network 193.136.66.0 0.0.0.127 area 0
+	-Router(config-router)#network 193.136.0.4 0.0.0.3 area 0
+	-Router(config-router)#exit
+	-Router(config)#exit
+	-Router#copy running-config startup-config
+
+no gigapix porto:
+	-Router>en
+	-Router#conf t
+	-Router(config)#router ospf 10
+	-Router(config-router)#router-id 2.2.2.2
+	-Router(config-router)#network 193.136.0.0 0.0.0.3 area 0
+	-Router(config-router)#network 193.136.0.4 0.0.0.3 area 0
+	-Router(config-router)#network 193.136.0.8 0.0.0.3 area 0
+	-Router(config-router)#network 193.136.66.128 0.0.0.127 area 0
+	-Router(config-router)#exit
+	-Router(config)#exit
+	-Router#copy running-config startup-config
+
+no router ubi:
+	-Router>en
+	-Router#conf t
+	-Router(config)#router ospf 10
+	-Router(config-router)#router-id 3.3.3.3
+	-Router(config-router)#network 193.136.66.0 0.0.0.127 area 0
+	-Router(config-router)#network 193.136.66.128 0.0.0.127 area 0
+	-Router(config-router)#exit
+	-Router(config)#exit
+	-Router#copy running-config startup-config
+

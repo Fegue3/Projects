@@ -1,0 +1,32 @@
+17. Configurar os switches ‘CI’ e ‘polo1-2’ para aumentar a largura de banda e redundância entre eles 
+
+No Switch 'CI':
+	CI#conf t
+	CI(config)#interface FastEthernet4/1
+	CI(config-if)#channel-group 1 mode active
+	CI(config-if)#interface Port-channel 1
+	CI(config-if)#switchport mode trunk
+	CI(config-if)#exit
+	CI(config)#interface FastEthernet5/1
+	CI(config-if)#channel-group 1 mode active
+	CI(config-if)#interface Port-channel 1
+	CI(config-if)#switchport mode trunk
+	CI(config-if)#exit
+
+No Switch 'polo1-2':
+	polo1-2#conf t
+	polo1-2(config)#interface FastEthernet4/1
+	polo1-2(config-if)#channel-group 1 mode active
+	polo1-2(config-if)#interface Port-channel 1
+	polo1-2(config-if)#switchport mode trunk
+	polo1-2(config-if)#exit
+	polo1-2(config)#interface FastEthernet5/1
+	polo1-2(config-if)#channel-group 1 mode active
+	polo1-2(config-if)#interface Port-channel 1
+	polo1-2(config-if)#switchport mode trunk
+	polo1-2(config-if)#exit
+	
+
+
+para confirmar:
+	show etherchannel summary

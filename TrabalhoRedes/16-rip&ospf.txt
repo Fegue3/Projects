@@ -1,0 +1,35 @@
+16. Configurar a partilha de rotas entre RIP e OSPF [15]. 
+
+no router gigapix porto:
+
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 193.136.0.0
+Router(config-router)#network 193.136.66.0
+Router(config-router)#no auto-summary
+Router(config-router)#redistribute ospf 10
+
+no router ubi:
+
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 193.136.66.0
+Router(config-router)#no auto-summary
+Router(config-router)#redistribute ospf 10
+Router(config-router)#exit
+Router(config)#ip route 193.136.0.8 255.255.255.252 193.136.66.129
+Router(config)#exit
+Router#copy running-config startup-config
+
+
+no router ISPX:
+
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 193.136.0.0
+Router(config-router)#network 194.65.0.0
+Router(config-router)#no auto-summary
+Router(config-router)#redistribute ospf 10
+Router(config-router)#exit
+Router(config)#exit
+Router#copy running-config startup-config

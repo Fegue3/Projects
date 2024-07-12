@@ -1,0 +1,21 @@
+No Switch CI:
+	CI#
+	CI(config)#spanning-tree vlan 1 priority 4096
+	CI(config)#spanning-tree vlan 10 priority 4096
+	CI(config)#spanning-tree vlan 20 priority 4096
+	CI(config)#spanning-tree vlan 30 priority 4096
+	CI(config)#spanning-tree vlan 40 priority 4096
+	CI(config)#spanning-tree vlan 50 priority 4096
+	CI(config)#spanning-tree vlan 60 priority 4096
+	CI(config)#spanning-tree vlan 70 priority 4096
+	CI(config)#spanning-tree vlan 80 priority 4096
+	CI(config)#spanning-tree vlan 90 priority 4096
+	CI(config)#spanning-tree vlan 100 priority 4096
+	CI(config)#spanning-tree vlan 110 priority 4096
+	CI(config)#spanning-tree vlan 120 priority 4096
+	CI(config)#spanning-tree vlan 130 priority 4096
+
+para confirmar:
+	show spanning-tree
+
+aqui ajustamos o switch para ter um valor mais baixo comparado com os outros switches, assim o switch com menor prioridade é eleito a root bridge

@@ -1,0 +1,5 @@
+router(config)# ip nat inside source list 1 interface serial0/0.102 overload
+router(config)# ip nat inside source list 2 interface serial0/0.103 overload
+
+router(config)# access-list 1 permit 10.0.0.0 0.0.255.255
+router(config)# access-list 2 permit 10.0.0.0 0.0.255.255

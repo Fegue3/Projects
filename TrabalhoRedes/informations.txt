@@ -1,0 +1,35 @@
+Gigapix Lisboa
+-se 0/0  193.136.0.1  255.255.255.252
+-gig 1/0 193.136.0.5  255.255.255.252
+-gig 2/0 193.136.66.1  255.255.255.128
+
+Gigapix Porto
+-se 0/0 193.136.0.2  255.255.255.252
+-se 1/0 193.136.66.129  255.255.255.128
+-gig 2/0 193.136.66.6  255.255.255.252
+-gig 3/0 193.136.0.9  255.255.255.252
+
+ubi
+-se 0/0 193.136.66.130  255.255.255.128
+-gig 1/0 193.136.66.2  255.255.255.128
+
+
+
+vlans:
+
+10 - DSoc
+20- deletromecanica
+30- secretariareitor
+40- fcs
+50- dmatematica
+60- ubimedical
+70- residencias
+80- dge
+90- eduram
+100- di-docentes
+110- di-geral
+120- pessoal
+130- engcivil
+
+
+FE80::20A:F3FF:FEA8:7701

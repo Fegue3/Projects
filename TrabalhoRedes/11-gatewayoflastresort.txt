@@ -1,0 +1,8 @@
+no router gigapix lisboa:
+	ip route 0.0.0.0 0.0.0.0 193.136.0.6
+
+no router gigapix porto:
+	ip route 0.0.0.0 0.0.0.0 193.136.0.5
+
+
+o 0.0.0.0 significa qual seria a rede default
