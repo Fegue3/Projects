@@ -451,6 +451,7 @@ void logout(void)
 {
     clearscreen();
     centerText("Saindo...", 10);
+    centerText("\n\n", 1);
     showcursor();
     exit(0);
 }
